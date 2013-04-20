@@ -1,0 +1,19 @@
+{
+    "name" : "softwarewolves node.js bot",
+    "version" : "0.0.1",
+    "author": "Johan Peeters (yo@johanpeeters.com)",
+    "description": "node.js bot for the werewolves game",
+    "contributors": [
+        {
+            "name": "Johan Peeters",
+            "email": "yo@johanpeeters.com"
+        }
+    ],
+    "dependencies" : {
+        "node-stringprep" :  "*",
+        "node-xmpp" :  "*",
+        "should" :  "*",
+        "mocha"    :  "*",
+        "node-expat"    :  "*"
+    }
+}
