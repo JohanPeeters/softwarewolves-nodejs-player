@@ -48,28 +48,6 @@ describe('BotXmppHelper', function () {
         }
     );
 
-    describe('on receiving an invitation to a village', function () {
-
-        it('joins the village and emits an event', function (done) {
-            helper.client.send = function (message) {
-                message.is('presence').should.be.true;
-                message.to.should.equal(room_jid + '/' + roomnick);
-                helper.client.send = function (message) {
-                };
-                done();
-            };
-
-            const invitation = new xmpp.Message({to:jid, from:room_jid});
-            invitation.c('x', {xmlns:muc_ns + '#user', jid:room_jid})
-                .c('invite', {to:jid})
-                .c('reason')
-                .t('come and join the werewolf game');
-
-            helper.client.emit('stanza', invitation);
-            helper.isInVillage.should.be.true;
-        });
-    });
-
     describe('on receiving a presence message from a moderator', function () {
         it('sends out a god_is_omnipresent event', function (done) {
             const fromin = "village516@conference.jabber.org/MC";

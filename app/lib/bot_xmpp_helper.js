@@ -28,7 +28,7 @@ function BotXmppHelper(jid, password, host, gameCoordinator, roomnick) {
         var msg = new xmpp.Presence();
         msg.c('show').t('chat');
         self.client.send(msg);
-        msg = new xmpp.Message({ to: gameCoordinator});
+        msg = new xmpp.Message({ to:gameCoordinator});
         msg.c('body').t('I want to play');
         self.client.send(msg);
 
@@ -49,17 +49,18 @@ function BotXmppHelper(jid, password, host, gameCoordinator, roomnick) {
         });
 
         function onInvite(message) {
-            const invite = message.getChild('x').getChild('invite');
+
             self.roomjid = message.from;
             self.removeListener('invite', onInvite);
+            setTimeout((function () {
+                // join room (and request no chat history)
+                var presence = new xmpp.Presence({ to:self.roomjid + '/' + roomnick });
+                presence.c('x', { xmlns:'http://jabber.org/protocol/muc' });
+                self.client.send(presence);
 
-            // join room (and request no chat history)
-            var presence = new xmpp.Presence({ to:self.roomjid + '/' + roomnick });
-            presence.c('x', { xmlns:'http://jabber.org/protocol/muc' });
-            self.client.send(presence);
-
-            isInVillage = true;
-            self.emit('arrived_at_village');
+                isInVillage = true;
+                self.emit('arrived_at_village');
+            }), 5000);
         }
 
         self.on('invite', onInvite);
