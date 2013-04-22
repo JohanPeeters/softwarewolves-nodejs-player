@@ -1,5 +1,5 @@
 {
-    "name" : "softwarewolves_node_js_bot",
+    "name" : "softwarewolves-nodejs-player",
     "version" : "0.0.1",
     "author": "Johan Peeters (yo@johanpeeters.com)",
     "description": "node.js bot for the werewolves game",
