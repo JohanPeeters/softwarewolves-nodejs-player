@@ -48,7 +48,13 @@ You may want to experiment with some mocha reporters, e.g.
 
     mocha -R list
     
-### 4. Configure the bot
+### 4. Configure and run the bot
+
+Configure the bot username and password and the gamecoordinator in main.js
+
+Run the main file
+    
+    node main.js
 
 
 
